@@ -24,6 +24,24 @@
     You have <b data-bind="text: incompleteTasks().length">&nbsp;</b> incomplete task(s)
     <span data-bind="visible: incompleteTasks().length == 0"> - it's beer time!</span>
     
+    <!--This snippet uses a <textarea> just so you can see what's happening behind the scenes. -->
+    <!--Try it: as the visitor edits data in the UI, dependency tracking will cause the JSON -->
+    <!--representation in the textarea to update automatically. When the visitor submits the -->
+    <!--form, your server-side code will receive that JSON data.-->
+    <!--Example of two task objects:-->
+    <!--[{"title":"Wire the money to Panama","isDone":true},{"title":"Book taxi to airport","isDone":false}]-->
+    <!--You can also hide the text area like:-->
+    <!--<input type="hidden" name="tasks" data-bind="value: ko.toJSON(tasks)" />-->
+    <form action="/tasks/saveform" method="post">
+        <textarea name="tasks" data-bind="value: ko.toJSON(tasks)"></textarea>
+        <button type="submit">Save</button>
+    </form>
+        
+    <!--As an alternative to a full HTML <form> post like above, you can of course send your model -->
+    <!--data to the server using an Ajax request. For example, remove the <form> you just -->
+    <!--added in the previous step, and replace it with a simple <button>:-->
+    <button data-bind="click: save">Save</button>
+        
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
     <script type="text/javascript" src="index.js"></script>
     

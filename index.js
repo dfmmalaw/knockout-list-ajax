@@ -28,6 +28,18 @@ function TaskListViewModel() {
         self.newTaskText("");
     };
     self.removeTask = function(task) { self.tasks.remove(task) };
+    
+    // implement the save function with AJAX by adding an extra function to TaskListViewModel:
+    // In this example, the success handler simply alerts whatever the server responds, just so 
+    // you can see the server really did receive and understand the data. In a real application, 
+    // you'd be more likely to show a "saved" flash message or redirect away to some other page.
+    self.save = function() {
+        $.ajax("/tasks", {
+            data: ko.toJSON({ tasks: self.tasks }),
+            type: "post", contentType: "application/json",
+            success: function(result) { alert(result) }
+        });
+    };
 }
 
 ko.applyBindings(new TaskListViewModel()); 
