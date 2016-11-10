@@ -20,4 +20,4 @@ function TaskListViewModel() {
     self.removeTask = function(task) { self.tasks.remove(task) };
 }
 
-ko.applyBindings(new TaskListViewModel());
+ko.applyBindings(new TaskListViewModel()); 
